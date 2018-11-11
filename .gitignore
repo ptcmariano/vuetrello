@@ -16,3 +16,4 @@ config/prod.env.js
 *.ntvs*
 *.njsproj
 *.sln
+selenium-server.log

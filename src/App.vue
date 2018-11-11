@@ -49,15 +49,19 @@ export default {
     return {
       dateCopy: 2018,
       clipped: false,
-      drawer: true,
+      drawer: false,
       items: [{
         icon: 'bubble_chart',
+        url: '/listcards',
         title: 'Cards'
       }],
       miniVariant: false,
-      right: true,
-      rightDrawer: false,
       title: 'Cards Trello'
+    }
+  },
+  methods: {
+    redirectTo (url) {
+      window.location = url
     }
   },
   name: 'VueTrello'
