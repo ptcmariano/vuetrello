@@ -1,7 +1,7 @@
 {
-  "name": "beetrello",
+  "name": "vuetrello",
   "version": "1.0.0",
-  "description": "projeto para mostrar coisas do trello do beedoo",
+  "description": "projeto para mostrar coisas do trello",
   "author": "Paulo Mariano <paulotiagocm@hotmail.com>",
   "private": true,
   "scripts": {
