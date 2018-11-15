@@ -15,12 +15,9 @@
           v-for="(item, i) in items"
           :key="i"
         >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
+          <router-link :to="item.url">
+            <v-icon v-html="item.icon"></v-icon> {{item.title}}
+          </router-link>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -50,18 +47,30 @@ export default {
       dateCopy: 2018,
       clipped: false,
       drawer: false,
-      items: [{
-        icon: 'bubble_chart',
-        url: '/listcards',
-        title: 'Cards'
-      }],
+      items: [
+        {
+          icon: 'class',
+          url: '/',
+          title: 'Home page'
+        },
+        {
+          icon: 'bubble_chart',
+          url: '/auth',
+          title: 'Auth Page'
+        },
+        {
+          icon: 'bookmark',
+          url: '/listcards',
+          title: 'Cards by lists'
+        },
+        {
+          icon: 'event',
+          url: '/memberboards',
+          title: 'Boards by member'
+        }
+      ],
       miniVariant: false,
       title: 'Cards Trello'
-    }
-  },
-  methods: {
-    redirectTo (url) {
-      window.location = url
     }
   },
   name: 'VueTrello'

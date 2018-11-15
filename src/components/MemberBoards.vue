@@ -26,13 +26,14 @@
 </style>
 
 <script>
+import storeToken from '../stores/storeToken'
 export default {
   data () {
     return {
       boards: [
         {
           'id': '5be55ceb7f54cb80fb381719',
-          'name': 'Beedoo - Em Andamento',
+          'name': 'Name Board',
           'lists': [
             {
               'id': '5be55d96d2227187741fdb7e',
@@ -61,7 +62,7 @@ export default {
   methods: {
     loadIdMember () {
       let keyTrello = process.env.TRELLO_KEY
-      let tokenTrello = process.env.TRELLO_TOKEN
+      let tokenTrello = storeToken.state.token
       let self = this
       let xhr = new XMLHttpRequest()
       xhr.addEventListener('readystatechange', function () {
@@ -74,7 +75,7 @@ export default {
     },
     loadBoardsTrello () {
       let keyTrello = process.env.TRELLO_KEY
-      let tokenTrello = process.env.TRELLO_TOKEN
+      let tokenTrello = storeToken.state.token
       let self = this
       let xhr = new XMLHttpRequest()
       xhr.addEventListener('readystatechange', function () {
