@@ -1,6 +1,6 @@
 {
-  "name": "beetrello",
-  "short_name": "beetrello",
+  "name": "vuetrello",
+  "short_name": "vuetrello",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",

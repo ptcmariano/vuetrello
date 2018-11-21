@@ -3,7 +3,6 @@
     <v-slide-y-transition mode='out-in'>
       <v-layout column>
         <blockquote>
-          <p>Member: <v-btn color='info' @click='loadIdMember()'>Carregar member</v-btn></p>
           <h2>Member id: {{member.idMember}}</h2>
           <p>Boards: <v-btn color='info' @click='loadBoardsTrello()'>Carregar boards</v-btn></p>
           <v-list two-line>
@@ -27,6 +26,7 @@
 
 <script>
 import storeToken from '../stores/storeToken'
+import storeMember from '../stores/storeMember'
 export default {
   data () {
     return {
@@ -59,6 +59,9 @@ export default {
       }
     }
   },
+  mounted () {
+    this.loadIdMember()
+  },
   methods: {
     loadIdMember () {
       let keyTrello = process.env.TRELLO_KEY
@@ -67,7 +70,8 @@ export default {
       let xhr = new XMLHttpRequest()
       xhr.addEventListener('readystatechange', function () {
         if (this.readyState === this.DONE) {
-          self.member = JSON.parse(this.responseText)
+          storeMember.setMemberAction(JSON.parse(this.responseText))
+          self.member = storeMember.state.member
         }
       })
       xhr.open('GET', 'https://api.trello.com/1/tokens/' + tokenTrello + '?token=' + tokenTrello + '&key=' + keyTrello)
@@ -83,7 +87,7 @@ export default {
           self.boards = JSON.parse(this.responseText)
         }
       })
-      xhr.open('GET', 'https://api.trello.com/1/members/' + self.member.idMember + '/boards?filter=open&fields=id%2Cname%2Clists&lists=open&memberships=none&organization=false' +
+      xhr.open('GET', 'https://api.trello.com/1/members/' + storeMember.state.member.idMember + '/boards?filter=open&fields=id%2Cname%2Clists&lists=open&memberships=none&organization=false' +
         '&organization_fields=name%2CdisplayName&token=' + tokenTrello + '&key=' + keyTrello)
       xhr.send(null)
     }
