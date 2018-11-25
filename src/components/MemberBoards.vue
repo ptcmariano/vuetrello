@@ -2,8 +2,12 @@
   <v-container fluid>
     <v-slide-y-transition mode='out-in'>
       <v-layout column>
-        <blockquote>
+        <header>
           <h2>Member id: {{member.idMember}}</h2>
+          <img :src="member.srcAvatar">
+          <span>{{member.fullName}}</span>
+        </header>
+        <blockquote>
           <p>Boards: <v-btn color='info' @click='loadBoardsTrello()'>Carregar boards</v-btn></p>
           <v-list two-line>
             <template v-for='board in boards'>
@@ -55,8 +59,15 @@ export default {
         }
       ],
       member: {
-        idMember: '1'
+        id: '1',
+        fullName: '',
+        srcAvatar: ''
       }
+    }
+  },
+  watch: {
+    member () {
+      this.$set(this.member, 'srcAvatar', 'https://trello-avatars.s3.amazonaws.com/' + this.member.avatarHash + '/50.png')
     }
   },
   mounted () {
@@ -74,7 +85,7 @@ export default {
           self.member = storeMember.state.member
         }
       })
-      xhr.open('GET', 'https://api.trello.com/1/tokens/' + tokenTrello + '?token=' + tokenTrello + '&key=' + keyTrello)
+      xhr.open('GET', 'https://api.trello.com/1/tokens/' + tokenTrello + '/member?fields=fullName,avatarHash,id&token=' + tokenTrello + '&key=' + keyTrello)
       xhr.send(null)
     },
     loadBoardsTrello () {
@@ -87,7 +98,7 @@ export default {
           self.boards = JSON.parse(this.responseText)
         }
       })
-      xhr.open('GET', 'https://api.trello.com/1/members/' + storeMember.state.member.idMember + '/boards?filter=open&fields=id%2Cname%2Clists&lists=open&memberships=none&organization=false' +
+      xhr.open('GET', 'https://api.trello.com/1/members/' + storeMember.state.member.id + '/boards?filter=open&fields=id%2Cname%2Clists&lists=open&memberships=none&organization=false' +
         '&organization_fields=name%2CdisplayName&token=' + tokenTrello + '&key=' + keyTrello)
       xhr.send(null)
     }
