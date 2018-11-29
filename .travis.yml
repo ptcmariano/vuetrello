@@ -6,4 +6,5 @@ env:
 install:
     - npm i
 script:
+    - cp config/example.prod.env.js config/prod.env.js
     - npm run unit
