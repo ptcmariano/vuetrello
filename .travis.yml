@@ -1,9 +1,10 @@
 language: node_js
 node_js:
-  - "node"
+  - "8"
 env:
     - NODE_ENV=testing
-script:
+install:
     - npm install
+script:
     - cp config/example.prod.env.js config/prod.env.js
     - npm run unit
