@@ -3,8 +3,7 @@ node_js:
   - "node"
 env:
     - NODE_ENV=testing
-install:
-    - npm i
 script:
+    - npm install
     - cp config/example.prod.env.js config/prod.env.js
     - npm run unit
