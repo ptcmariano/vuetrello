@@ -4,6 +4,8 @@
 
 > para pegar chave e token da API trello acesse: https://developers.trello.com/reference/
 
+[![buddy pipeline](https://app.buddy.works/ptcmariano/vuetrello/pipelines/pipeline/162187/badge.svg?token=803bd4b5e35b1a83111cc2454e2ddf5f6a20e4bf4e7ee029a6da36a5071a94ac "buddy pipeline")](https://app.buddy.works/ptcmariano/vuetrello/pipelines/pipeline/162187)
+
 ## Build Setup
 
 ``` bash
