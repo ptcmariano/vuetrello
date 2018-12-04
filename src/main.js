@@ -16,7 +16,9 @@ import {
   transitions
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
+import cmember from './components/partial/cmember.vue'
 
+Vue.component('cmember', cmember)
 Vue.use(Vuetify, {
   components: {
     VApp,
