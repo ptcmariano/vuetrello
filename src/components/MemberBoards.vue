@@ -2,11 +2,7 @@
   <v-container fluid>
     <v-slide-y-transition mode='out-in'>
       <v-layout column>
-        <header>
-          <h2>Member id: {{member.idMember}}</h2>
-          <img :src="member.srcAvatar">
-          <span>{{member.fullName}}</span>
-        </header>
+        <cmember></cmember>
         <blockquote>
           <p>Boards: <v-btn color='info' @click='loadBoardsTrello()'>Carregar boards</v-btn></p>
           <v-list two-line>
@@ -65,29 +61,7 @@ export default {
       }
     }
   },
-  watch: {
-    member () {
-      this.$set(this.member, 'srcAvatar', 'https://trello-avatars.s3.amazonaws.com/' + this.member.avatarHash + '/50.png')
-    }
-  },
-  mounted () {
-    this.loadIdMember()
-  },
   methods: {
-    loadIdMember () {
-      let keyTrello = process.env.TRELLO_KEY
-      let tokenTrello = storeToken.state.token
-      let self = this
-      let xhr = new XMLHttpRequest()
-      xhr.addEventListener('readystatechange', function () {
-        if (this.readyState === this.DONE) {
-          storeMember.setMemberAction(JSON.parse(this.responseText))
-          self.member = storeMember.state.member
-        }
-      })
-      xhr.open('GET', 'https://api.trello.com/1/tokens/' + tokenTrello + '/member?fields=fullName,avatarHash,id&token=' + tokenTrello + '&key=' + keyTrello)
-      xhr.send(null)
-    },
     loadBoardsTrello () {
       let keyTrello = process.env.TRELLO_KEY
       let tokenTrello = storeToken.state.token
